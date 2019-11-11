@@ -1,0 +1,28 @@
+{
+  "name": "ships",
+  "version": "1.0.0",
+  "description": "browser ships game",
+  "main": "script.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MagdaSzade/ships.git"
+  },
+  "keywords": [
+    "game",
+    "ships",
+    "js"
+  ],
+  "author": "TeamStatki",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MagdaSzade/ships/issues"
+  },
+  "homepage": "https://github.com/MagdaSzade/ships#readme",
+  "devDependencies": {
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  }
+}
