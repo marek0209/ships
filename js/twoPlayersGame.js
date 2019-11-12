@@ -1,11 +1,9 @@
+const Board = require('./board');
+
+const input = document.getElementsByClassName('board-field');
+
 class twoPlayersGame  {
-        constructor() {
-            
-        }
 
-    twoPlayersGame() {
-
-    }
 }
 
 module.exports = twoPlayersGame;

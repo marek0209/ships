@@ -12,17 +12,17 @@ class Board {
    
     createRandomBoard() {
         this.setShip(4);
-    /*    board = setShip(3, board);
-        board = setShip(3, board);
-        board = setShip(2, board);
-        board = setShip(2, board);
-        board = setShip(2, board);
-        board = setShip(2, board);
-        board = setShip(1, board);
-        board = setShip(1, board);
-        board = setShip(1, board);
-        board = setShip(1, board);
-        board = setShip(1, board); */
+        this.setShip(3);
+        this.setShip(3);
+        this.setShip(2);
+        this.setShip(2);
+        this.setShip(2);
+        this.setShip(2);
+        this.setShip(1);
+        this.setShip(1);
+        this.setShip(1);
+        this.setShip(1);
+        this.setShip(1);
         for (let i = 0; i < 10; i++) {
             for (let j = 0; j < 10; j++) {
                 if (this.board[i][j] == undefined) {

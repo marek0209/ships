@@ -87,6 +87,20 @@ button {
     border: solid 3px var(--border-color);
 }
 
+#board2 {
+    display: grid;
+    width: 550px;
+    height: 550px;
+    margin: auto;
+    grid-template-columns: repeat(11, 50px);;
+    grid-template-rows: 50px;
+    grid-auto-rows: 50px;
+    justify-items: stretch;
+    align-items: stretch;
+    background-color: var(--board-color);
+    border: solid 3px var(--border-color);
+}
+
 .content {
     display: block;
     margin: auto;

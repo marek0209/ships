@@ -8,7 +8,6 @@ class OnePlayerGame {
     constructor() {
         this.gameBoard = new Board();
         this.gameBoard.createRandomBoard();
-        this.gameBoardPlayerTwo = new Board();
         this.hitCounter = 0;
         this.moveCounter = 0;
     };
@@ -21,6 +20,7 @@ class OnePlayerGame {
     onePlayerLoop() {
     let value = validateInput(input, this.gameBoard);
         if (value) {
+            this.moveCounter++;
             let firedField = shotField(value.row, value.col);
             if (this.gameBoard.board[value.row][value.col].type === 'ship') {
                 document.querySelector(firedField).setAttribute("src", "./img/ships/ship.jpg");
@@ -34,8 +34,9 @@ class OnePlayerGame {
     };
 
     isEndOfGame() {
-        if (this.hitCounter === 4) {
+        if (this.hitCounter === 23) {
             this.gameBoard.showAllBoard();
+            console.log(this.moveCounter);
         }
     }
 }
