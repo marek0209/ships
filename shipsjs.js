@@ -264,7 +264,7 @@ Array.from(fieldClicked).forEach(function (element) {
         choseField(element);
 
         function choseField(element) {
-            var id = $(element).attr('id');
+            var id = element.getAttribute('id');
             console.log(id[0], id[1]);
             if (id[0] != null) {
                 CollectInput(id);
