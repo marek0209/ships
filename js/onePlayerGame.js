@@ -2,7 +2,7 @@ const Board = require('./board');
 const validateInput = require('./input');
 const shotField = require('./output');
 
-const input = document.querySelector('#move');
+const input = document.querySelector('#move1');
 
 class OnePlayerGame {
     constructor() {

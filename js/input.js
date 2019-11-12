@@ -3,14 +3,17 @@ function inputValidate(input, gameBoard) {
     const value = validateInput(input.value);
     if (value === false) {
         input.nextElementSibling.style.display = "block";
-        $('#move').val('');   
+        $('#move1').val('');
+        $('#move2').val('');    
     } else {
         input.nextElementSibling.style.display = "none";
         if (gameBoard.board[value.row][value.col].isHited) {
             input.previousElementSibling.style.display = "block";
-            $('#move').val('');
+            $('#move1').val('');
+            $('#move2').val(''); 
         } else {
-            $('#move').val('');
+            $('#move1').val('');
+            $('#move2').val(''); 
             return value;
         }
     }
