@@ -31,8 +31,6 @@ twoPlayers.addEventListener('click', () => {
     start.style.display = "none";
     gameBoard.style.display = "grid";
     gameBoard2.style.display = "grid";
-    inputMove.style.display = "inline-block";
-    input2.style.display = "none";
     const game = new TwoPlayersGame();
     game.twoPlayersGame();
 });
@@ -41,8 +39,6 @@ aiPlayer.addEventListener('click', () => {
     start.style.display = "none";
     gameBoard.style.display = "grid";
     gameBoard2.style.display = "grid";
-    input.style.display = "inline-block";
-    input2.style.display = "none";
     const game = new AIPlayer();
     game.aiPlayerGame();
 });

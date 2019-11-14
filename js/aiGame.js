@@ -3,9 +3,11 @@ const validateInput = require('./input');
 const shotField = require('./output');
 const AutomaticOpponent = require('./automaticOpponent');
 
-const input = document.querySelector('#move');
+// const input = document.querySelector('#move');
 const gameBoardHTML = document.getElementById("board");
 const aoBoardHTML = document.getElementById("board2");
+
+const fieldClicked = document.getElementsByClassName("board-field");
 
 
 class AIGame {        
@@ -22,25 +24,38 @@ class AIGame {
     }
 
     aiPlayerGame() {
-    console.log("AO Player Game", this.playerBoard);
-    input.addEventListener('change', this.aiLoop.bind(this));
+    console.log("AI  Game", this.playerBoard);
+    console.log(fieldClicked.length);
+    const test = (e) =>{
+        let element = e.currentTarget;
+        let id = element.getAttribute('id');
+            console.log(id[0], id[1]);
+            if (id[0] != null) {
+                console.log()
+                this.aiLoop(id);
+            }
+        }
+    Array.from(fieldClicked).forEach(function (element) {
+        element.addEventListener('click',  test, {once: true});
+    });
     }
 
-    aiLoop() {
-        let value = validateInput(input, this.gameBoard);
-        if (value) {
-            let firedField = shotField(value.row, value.col);
-            this.gameBoard.board[value.row][value.col].isHited = true;
-            if (this.gameBoard.board[value.row][value.col].type === 'ship') {
+    aiLoop(id) {
+        let coordinate = validateInput(id);
+        console.log("coordinate:", coordinate.row, coordinate.col);
+        let firedField = shotField(coordinate.row, coordinate.col);
+        console.log("AiG test :", this.gameBoard.board);
+        
+            this.gameBoard.board[coordinate.row][coordinate.col].isHited = true;
+            if (this.gameBoard.board[coordinate.row][coordinate.col].type === 'ship') {
                 gameBoardHTML.querySelector(firedField).setAttribute("src", "./img/ships/ship.jpg");
                 this.playerHitCounter++;
                 this.isEndOfGame();    
             } else {
                 gameBoardHTML.querySelector(firedField).setAttribute("src", "./img/ships/pudlo.jpg");
-                input.style.display = "none";
                 this.aoMove();
             } 
-        };
+        
     };
 
     aoMove() {
@@ -56,7 +71,7 @@ class AIGame {
                 this.aoMove();   
             } else {
                 aoBoardHTML.querySelector(firedField).setAttribute("src", "./img/ships/pudlo.jpg");
-                input.style.display = "block";
+    
             } 
         };
     }

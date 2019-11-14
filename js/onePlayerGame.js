@@ -2,7 +2,7 @@ const Board = require('./board');
 const validateInput = require('./input');
 const shotField = require('./output');
 
-const input = document.querySelector('#move1');
+const fieldClicked = document.getElementsByClassName("board-field");
 
 class OnePlayerGame {
     constructor() {
@@ -14,24 +14,41 @@ class OnePlayerGame {
 
     onePlayerGame() {
         console.log("one Player Game", this.gameBoard);
-        input.addEventListener('change', this.onePlayerLoop.bind(this));
-    };
+        console.log(fieldClicked.length);
+        const test = (e) =>{
+            let element = e.currentTarget;
+            let id = element.getAttribute('id');
+                console.log(id[0], id[1]);
+                if (id[0] != null) {
+                    console.log()
+                    this.onePlayerLoop(id);
+                }
+            }
+        Array.from(fieldClicked).forEach(function (element) {
+            element.addEventListener('click',  test, {once: true});
+        });
+       
+        };
 
-    onePlayerLoop() {
-    let value = validateInput(input, this.gameBoard);
-        if (value) {
+        // input.addEventListener('change', this.onePlayerLoop.bind(this));
+ 
+
+    onePlayerLoop(id) {
+
+            let coordinate = validateInput(id);
+            console.log("coordinate:", coordinate.row, coordinate.col);
             this.moveCounter++;
-            let firedField = shotField(value.row, value.col);
-            if (this.gameBoard.board[value.row][value.col].type === 'ship') {
+            let firedField = shotField(coordinate.row, coordinate.col);
+            console.log("OPL test :", this.gameBoard.board);
+            if (this.gameBoard.board[coordinate.row][coordinate.col].type === 'ship') {
                 document.querySelector(firedField).setAttribute("src", "./img/ships/ship.jpg");
                 this.hitCounter++;
-            this.isEndOfGame();    
+                this.isEndOfGame();
             } else {
                 document.querySelector(firedField).setAttribute("src", "./img/ships/pudlo.jpg");
-            } 
-            this.gameBoard.board[value.row][value.col].isHited = true;
+            }
+            this.gameBoard.board[coordinate.row][coordinate.col].isHited = true;
         };
-    };
 
     isEndOfGame() {
         if (this.hitCounter === 23) {
@@ -39,6 +56,9 @@ class OnePlayerGame {
             console.log(this.moveCounter);
         }
     }
-}
+};
+
+
+
 
 module.exports = OnePlayerGame;

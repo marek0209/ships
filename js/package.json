@@ -4,7 +4,8 @@
   "description": "browser ships game",
   "main": "script.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "build": "webpack script.js --output dist/bundle.js --mode development --watch"
   },
   "repository": {
     "type": "git",

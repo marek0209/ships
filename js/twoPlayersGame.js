@@ -1,15 +1,12 @@
 const Board = require('./board');
 const validateInput = require('./input');
 const shotField = require('./output');
-
-const move1 = document.querySelector('#move1');
-const move2 = document.querySelector('#move2');
-const input1 = document.querySelector('#input1');
-const input2 = document.querySelector('#input2');
 const playerOneBoardHTML = document.getElementById("board");
 const playerTwoBoardHTML = document.getElementById("board2");
+const fieldsBoardOne = document.getElementById("board").childNodes;
+const fieldsBoardTwo = document.getElementById("board2").childNodes;
 
-class twoPlayersGame  {
+class twoPlayersGame {
     constructor() {
         //for Player 1
         this.playerOneBoard = new Board();
@@ -22,43 +19,67 @@ class twoPlayersGame  {
     }
 
     twoPlayersGame() {
-    console.log("PlayerOne Board", this.playerOneBoard);
-    console.log("Player Two Board", this.playerTwoBoard);
-    move1.addEventListener('change', this.playerOneMove.bind(this));
-    move2.addEventListener('change', this.playerTwoMove.bind(this));
+        console.log("PlayerOne Board", this.playerOneBoard);
+
+        const boardOne = (e) => {
+            let element = e.currentTarget;
+            let moveOne = element.getAttribute('id');
+            if (moveOne[0] != null) {
+                console.log(moveOne[0], moveOne[1]);
+                this.playerOneMove(moveOne);
+            }
+        }
+        Array.from(fieldsBoardOne).forEach(function (element) {
+            element.addEventListener('click',  boardOne, {once: true});
+        });
+        console.log("Player Two Board", this.playerTwoBoard);
+        const boardTwo = (e) => {
+            let element = e.currentTarget;
+            let moveTwo = element.getAttribute('id');
+            if (moveTwo[0] != null) {
+                console.log(moveTwo[0], moveTwo[1]);
+                this.playerTwoMove(moveTwo);
+            }
+        }
+
+        Array.from(fieldsBoardTwo).forEach(function (element) {
+            element.addEventListener('click',  boardTwo, {once: true});
+        });
+
+        
+        // move1.addEventListener('change', this.playerOneMove.bind(this));
+        // move2.addEventListener('change', this.playerTwoMove.bind(this));
     }
 
-    playerOneMove() {
-        let value = validateInput(move1, this.playerOneBoard);
+    playerOneMove(moveOne) {
+        let value = validateInput(moveOne);
         if (value) {
             let firedField = shotField(value.row, value.col);
             this.playerOneBoard.board[value.row][value.col].isHited = true;
             if (this.playerOneBoard.board[value.row][value.col].type === 'ship') {
                 playerOneBoardHTML.querySelector(firedField).setAttribute("src", "./img/ships/ship.jpg");
                 this.playerOneHitCounter++;
-                this.isEndOfGame();    
+                this.isEndOfGame();
             } else {
                 playerOneBoardHTML.querySelector(firedField).setAttribute("src", "./img/ships/pudlo.jpg");
-                input1.style.display = "none";
-                input2.style.display = "inline-block";
-            } 
+
+            }
         };
     };
 
-    playerTwoMove() {
-        let value = validateInput(move2, this.playerTwoBoard);
+    playerTwoMove(moveTwo) {
+        let value = validateInput(moveTwo);
         if (value) {
             let firedField = shotField(value.row, value.col);
             this.playerTwoBoard.board[value.row][value.col].isHited = true;
             if (this.playerTwoBoard.board[value.row][value.col].type === 'ship') {
                 playerTwoBoardHTML.querySelector(firedField).setAttribute("src", "./img/ships/ship.jpg");
                 this.playerTwoHitCounter++;
-                this.isEndOfGame();    
+                this.isEndOfGame();
             } else {
                 playerTwoBoardHTML.querySelector(firedField).setAttribute("src", "./img/ships/pudlo.jpg");
-                input1.style.display = "block";
-                input2.style.display = "none";
-            } 
+
+            }
         };
     };
 

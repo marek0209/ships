@@ -1,25 +1,3 @@
-function inputValidate(input, gameBoard) {
-    input.previousElementSibling.style.display = "none";
-    const value = validateInput(input.value);
-    if (value === false) {
-        input.nextElementSibling.style.display = "block";
-        $('#move1').val('');
-        $('#move2').val('');    
-    } else {
-        input.nextElementSibling.style.display = "none";
-        if (gameBoard.board[value.row][value.col].isHited) {
-            input.previousElementSibling.style.display = "block";
-            $('#move1').val('');
-            $('#move2').val(''); 
-        } else {
-            $('#move1').val('');
-            $('#move2').val(''); 
-            return value;
-        }
-    }
-    return false;    
-}
-
 function validateInput(inputData) {
     let col;
     let row;
@@ -66,4 +44,4 @@ function validateInput(inputData) {
     return {col, row}
 }  
 
-module.exports = inputValidate;
+module.exports = validateInput;
