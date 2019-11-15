@@ -24,14 +24,10 @@ class AIGame {
     }
 
     aiPlayerGame() {
-    console.log("AI  Game", this.playerBoard);
-    console.log(fieldClicked.length);
     const test = (e) =>{
         let element = e.currentTarget;
         let id = element.getAttribute('id');
-            console.log(id[0], id[1]);
             if (id[0] != null) {
-                console.log()
                 this.aiLoop(id);
             }
         }
@@ -42,10 +38,7 @@ class AIGame {
 
     aiLoop(id) {
         let coordinate = validateInput(id);
-        console.log("coordinate:", coordinate.row, coordinate.col);
-        let firedField = shotField(coordinate.row, coordinate.col);
-        console.log("AiG test :", this.gameBoard.board);
-        
+        let firedField = shotField(coordinate.row, coordinate.col);        
             this.gameBoard.board[coordinate.row][coordinate.col].isHited = true;
             if (this.gameBoard.board[coordinate.row][coordinate.col].type === 'ship') {
                 gameBoardHTML.querySelector(firedField).setAttribute("src", "./img/ships/ship.jpg");
@@ -60,7 +53,6 @@ class AIGame {
 
     aoMove() {
         let value = this.ao.randomShot();
-        console.log(value);
         if (value) {
             let firedField = shotField(value.row, value.col);
             this.playerBoard.board[value.row][value.col].isHited = true;

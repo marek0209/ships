@@ -13,14 +13,10 @@ class OnePlayerGame {
     };
 
     onePlayerGame() {
-        console.log("one Player Game", this.gameBoard);
-        console.log(fieldClicked.length);
         const test = (e) =>{
             let element = e.currentTarget;
             let id = element.getAttribute('id');
-                console.log(id[0], id[1]);
                 if (id[0] != null) {
-                    console.log()
                     this.onePlayerLoop(id);
                 }
             }
@@ -30,16 +26,11 @@ class OnePlayerGame {
        
         };
 
-        // input.addEventListener('change', this.onePlayerLoop.bind(this));
- 
-
     onePlayerLoop(id) {
 
             let coordinate = validateInput(id);
-            console.log("coordinate:", coordinate.row, coordinate.col);
             this.moveCounter++;
             let firedField = shotField(coordinate.row, coordinate.col);
-            console.log("OPL test :", this.gameBoard.board);
             if (this.gameBoard.board[coordinate.row][coordinate.col].type === 'ship') {
                 document.querySelector(firedField).setAttribute("src", "./img/ships/ship.jpg");
                 this.hitCounter++;
@@ -53,7 +44,6 @@ class OnePlayerGame {
     isEndOfGame() {
         if (this.hitCounter === 23) {
             this.gameBoard.showAllBoard();
-            console.log(this.moveCounter);
         }
     }
 };

@@ -19,25 +19,20 @@ class twoPlayersGame {
     }
 
     twoPlayersGame() {
-        console.log("PlayerOne Board", this.playerOneBoard);
-
         const boardOne = (e) => {
             let element = e.currentTarget;
             let moveOne = element.getAttribute('id');
             if (moveOne[0] != null) {
-                console.log(moveOne[0], moveOne[1]);
                 this.playerOneMove(moveOne);
             }
         }
         Array.from(fieldsBoardOne).forEach(function (element) {
             element.addEventListener('click',  boardOne, {once: true});
         });
-        console.log("Player Two Board", this.playerTwoBoard);
         const boardTwo = (e) => {
             let element = e.currentTarget;
             let moveTwo = element.getAttribute('id');
             if (moveTwo[0] != null) {
-                console.log(moveTwo[0], moveTwo[1]);
                 this.playerTwoMove(moveTwo);
             }
         }
