@@ -7,7 +7,7 @@ const AutomaticOpponent = require('./automaticOpponent');
 const gameBoardHTML = document.getElementById("board");
 const aoBoardHTML = document.getElementById("board2");
 
-const fieldClicked = document.getElementsByClassName("board-field");
+const fieldClicked = document.getElementById("board").childNodes;
 
 
 class AIGame {        
