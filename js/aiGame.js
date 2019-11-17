@@ -52,7 +52,8 @@ class AIGame {
     };
 
     aoMove() {
-        let value = this.ao.randomShot();
+        let value = this.ao.fire();
+        console.log(value);
         if (value) {
             let firedField = shotField(value.row, value.col);
             this.playerBoard.board[value.row][value.col].isHited = true;
@@ -60,10 +61,11 @@ class AIGame {
                 aoBoardHTML.querySelector(firedField).setAttribute("src", "./img/ships/ship.jpg");
                 this.aoHitCounter++;
                 this.isEndOfGame();
+                this.ao.isHited();
                 this.aoMove();   
             } else {
                 aoBoardHTML.querySelector(firedField).setAttribute("src", "./img/ships/pudlo.jpg");
-    
+                this.ao.isNotHited();
             } 
         };
     }

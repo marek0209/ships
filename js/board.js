@@ -101,15 +101,15 @@ class Board {
             }
     }
 
-    showAllBoard() {
+    showAllBoard(boardNbr) {
         for (let i = 0; i < this.board.length; i++) {
             for (let j = 0; j < this.board[i].length; j++) {
                 let firedField = shotField(i, j);
                 if (this.board[i][j].type === 'ship') {
                     this.board[i][j].isHited = true;
-                    document.querySelector(firedField).setAttribute("src", "./img/ships/ship.jpg");    
+                    document.querySelector(`#${boardNbr}`).querySelector(firedField).setAttribute("src", "./img/ships/ship.jpg");    
                 } else if (this.board[i][j].type === 'mishit') {
-                    document.querySelector(firedField).setAttribute("src", "./img/ships/pudlo.jpg");
+                    document.querySelector(`#${boardNbr}`).querySelector(firedField).setAttribute("src", "./img/ships/pudlo.jpg");
                     this.board[i][j].isHited = true;
                 } 
             }
